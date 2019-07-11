@@ -1,0 +1,2 @@
+class JungleMailer < ApplicationMailer
+end
