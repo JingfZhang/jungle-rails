@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  get '/empty' => 'empty#show'
   
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
