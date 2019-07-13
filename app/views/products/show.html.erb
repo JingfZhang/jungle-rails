@@ -22,6 +22,26 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Reviews</dt>
+          <% if current_user %>
+            <dd>
+              <%= form_for [@product, Review.new]  do |f| %>
+                Description: <%= f.text_field :description %>
+                Rating: <%= f.select :rating, [1,2,3,4,5]%>
+                <%= f.submit "Submit" %>
+              <% end %>
+            </dd>
+          <% end %>
+            <% @product.reviews.order("created_at desc").each do |review| %>
+              <dd>
+                <h5><%= review.user.first_name %></h5>
+                <h5>Review: </h5><%= review.description %>
+                <h5>Rating: </h5>
+                <% review.rating.times do |i| %>
+                  <%= fa_icon "angellist" %>
+                <% end %>
+              </dd>
+            <% end %>
         </dl>
       </div>
     </div>
